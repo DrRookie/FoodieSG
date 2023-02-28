@@ -1,0 +1,223 @@
+<head>
+
+    <meta charset="UTF-8">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+    <title>User Information</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Additional CSS Files -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/fontawesome.css">
+    <link rel="stylesheet" href="assets/css/templatemo-plot-listing.css">
+    <link rel="stylesheet" href="assets/css/animated.css">
+    <link rel="stylesheet" href="assets/css/owl.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Sofia">
+   
+    <script>
+      var profile_pic, mobile_num, username, email, user_id,token;
+      token = sessionStorage.getItem("token")
+    </script>
+</head>
+
+<body onload="getReviewforEachUser();">
+  
+
+  <!-- ***** Preloader Start ***** -->
+  <div id="js-preloader" class="js-preloader">
+    <div class="preloader-inner">
+      <span class="dot"></span>
+      <div class="dots">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+  </div>
+  <!-- ***** Preloader End ***** -->
+
+  <!-- ***** Header Area Start ***** -->
+  <header class="header-area header-sticky wow slideInDown" data-wow-duration="0.75s" data-wow-delay="0s">
+    
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
+          <nav class="main-nav">
+            <!-- ***** Menu Start ***** -->
+            <ul class="nav">
+              <li><a href="index.html" class = "hover" >Home</a></li>
+
+              <li class="nav-item" id="loginMenu" >
+                <a class="nav-link" href="##loginModall" id="login" data-toggle="modal" data-target="#loginModall">
+                     LOGIN
+                </a>
+              </li> 
+              <li class="nav-item" id="logoutMenu" style="display: none;">
+                <div class="btn-toolbar">
+                 <div class="dropdown">
+                   <button class="dropbtn" id = "usernamebutton"></button>
+                   <div class="dropdown-content">
+                     <a class = "user_infobutt" onclick = "" href="user_info.html">User Information</a>
+                     <a href="#">See Reviews Given</a>
+                     <a class="nav-link" href="#" id="logout" onclick="logoutMe();">LOGOUT</a>
+                   </div>
+                 
+               </div>
+               </li> 
+              <li class="nav-item" id="signupMenu">
+                <div class="main-white-button">
+                  <a class="nav-link" href="#" id="signup" data-toggle="modal" data-target="#signupModal">
+                    SIGNUP
+                  </a>
+                </div>
+              </li> 
+            </ul>        
+            <a class='menu-trigger'>
+                <span>Menu</span>
+            </a>
+            <!-- ***** Menu End ***** -->
+          </nav>
+        </div>
+      </div>
+    </div>
+  </header>
+  <!-- ***** Header Area End ***** -->
+
+  <div class="main-banner">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="top-text header-text">
+            <h6 id = title>Resturant Review</h6>
+            <h2>Food You Love, All in one place</h2>
+            
+          </div>
+        </div>
+        
+      </div>
+    </div>
+  </div>
+ <br></br>
+  
+ <div class="container-md">
+    <!-- The message will be shown when the page loads and will
+    disappear after the movies are loaded -->
+    <div class="row" id="parent">
+      <div class="row mt-5" id="parent">
+        <div id="emptys">It's empty here...</div>
+        <div class="row px-5" id="reviewsdisplay"></div>
+
+
+      </div>
+      
+      
+    </div>
+   
+    
+ </div>
+
+  
+  
+
+
+  <br></br>
+  <br></br>
+ 
+
+ 
+
+ <!-- Include the restaurant modal here -->
+ <div w3-include-html="restaurant-model.html"></div>
+  <!-- Include the restaurant modal here -->
+ <div w3-include-html="reviews-model.html"></div>
+ <!-- Include the new comments modal here -->
+ <div w3-include-html="new-reviews-modal.html"></div>
+ <!-- Include the edit comments modal here -->
+ <div w3-include-html="edit-reviews-modal.html"></div>
+ <!-- Include the signup modal here -->
+ <div w3-include-html="signup-modal.html"></div>
+ <!-- Include the login modal here -->
+ <div w3-include-html="login-modal.html"></div>
+ <!-- Include the success modal here -->
+ <div w3-include-html="success-modal.html"></div>
+ <!-- Include the fail modal here -->
+ <div w3-include-html="fail-modal.html"></div>
+
+ 
+ 
+
+
+ 
+
+
+
+  
+
+
+
+
+
+
+  
+ <footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-4">
+        <div class="about">
+          <div class="logo">
+            <img src="assets/images/Logo.png" alt="FoodieSG">
+          </div>
+          <p>This is a project made by Muhammad Kenz,</p>
+          <p>For the Coding & Development Project and</p>
+          <p>Database Application Development module</p>
+        </div>
+      </div>
+            
+      <div class="col-lg-4">
+        <div class="contact-us">
+          <h4>Contact Me</h4>
+          <p>Email: MuhammadKenz2@gmail.com</p>
+          <p>Linkdin: <a href="https://www.linkedin.com/in/muhammad-kenz/">Muhammad Kenz</a></p>
+        
+        </div>
+      </div>
+      <div class="col-lg-12">
+        <div class="sub-footer">
+          <p>Copyright © 2021 FoodieSG by Kenz., Ltd. All Rights Reserved.
+          <br>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</body>
+
+<!-- Scripts -->
+<script src="https://www.w3schools.com/lib/w3.js"></script>
+<script>
+  //to bring in other HTML on the fly into this page
+  w3.includeHTML();
+</script>
+<script src="vendor/jquery/jquery.min.js"></script>
+<script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="assets/js/owl-carousel.js"></script>
+<script src="assets/js/animation.js"></script>
+<script src="assets/js/imagesloaded.js"></script>
+<script src="assets/js/custom.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+<script src="https://kit.fontawesome.com/86ec7c1143.js" ></script>
+<script src="assets/js/app.js"></script>
+<script src="assets/js/restaurants.js"></script>
+<script src="assets/js/reviews.js"></script>
+<script src="assets/js/signup.js"></script>
+<script src="assets/js/login.js"></script>
+<script src="assets/js/logout.js"></script>
+<script src="assets/js/checkToken.js"></script>
+<script src="assets/js/redirect.js"></script>
+<script src="assets/js/loadProfile.js"></script>
+<script src="assets/js/updateProfile.js"></script>

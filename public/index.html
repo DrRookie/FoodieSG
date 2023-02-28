@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Sofia">
+    <title>FoodieSG</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Additional CSS Files -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/fontawesome.css">
+    <link rel="stylesheet" href="assets/css/templatemo-plot-listing.css">
+    <link rel="stylesheet" href="assets/css/animated.css">
+    <link rel="stylesheet" href="assets/css/owl.css">
+    
+    <script> 
+     //global variables
+      var map, infoWindow, ussernamee, picture, profile;
+    </script>
+  
+</head>
+
+<body onload="getRestaurantData()">
+  
+
+  <!-- ***** Preloader Start ***** -->
+  <div id="js-preloader" class="js-preloader">
+    <div class="preloader-inner">
+      <span class="dot"></span>
+      <div class="dots">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+  </div>
+  <!-- ***** Preloader End ***** -->
+
+  <!-- ***** Header Area Start ***** -->
+  <header class="header-area header-sticky wow slideInDown" data-wow-duration="0.75s" data-wow-delay="0s">
+    
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
+          <nav class="main-nav">
+            <!-- ***** Menu Start ***** -->
+            <ul class="nav">
+
+
+              <li><a href="index.html" class = "hover" >Home</a></li>
+
+              <li class="nav-item" id="loginMenu" >
+                <a class="nav-link" href="#loginModall" id="login" data-toggle="modal" data-target="#loginModall">
+                     LOGIN
+                </a>
+              </li> 
+              
+              <li class="nav-item" id="logoutMenu" style="display: none;">
+               <div class="btn-toolbar">
+                <div class="dropdown">
+                  <button class="dropbtn" id = "usernamebutton"></button>
+                  <div class="dropdown-content">
+                    <a class = "user_infobutt" onclick = "" href="user_info.html">User Information</a>
+                    <a href="reviews-given.html">See Reviews Given</a>
+                    <a class="nav-link" href="#" id="logout" onclick="logoutMe();">LOGOUT</a>
+                  </div>
+                
+              </div>
+              </li> 
+              <li class="nav-item" id="signupMenu">
+                <div class="main-white-button">
+                  <a class="nav-link" href="#" id="signup" data-toggle="modal" data-target="#signupModal">
+                    SIGNUP
+                  </a>
+                </div>
+              </li> 
+            </ul>        
+            <a class='menu-trigger'>
+                <span>Menu</span>
+            </a>
+            <!-- ***** Menu End ***** -->
+          </nav>
+        </div>
+      </div>
+    </div>
+  </header>
+  <!-- ***** Header Area End ***** -->
+
+  <div class="main-banner">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="top-text header-text">
+            <h6 id = title>Resturant Review</h6>
+            <h2>Food You Love, All in one place</h2>
+            
+            
+          </div>
+        </div>
+        
+      </div>
+    </div>
+  </div>
+  <div class="container">
+    <div id="searchWrapper">
+        <input type="text" name="searchBar" id="searchBar" placeholder="SEARCH for a restaurant"
+            style="width: 100%; margin-top: 25px; height: 30px; width: 350px;   margin-left: 350px;" />
+    </div>
+    <ul id="restaurantsList"></ul>
+  </div>
+ <br></br>
+  <div class="dropdown">
+    <button class="dropbtn">Food Type</button>
+    <div class="dropdown-content" >
+      <a href="#" onclick="showAll();">All</a>
+      <a href="#" item = "Halal" onclick="getRestaurantDataByCato(this);" >Halal</a>
+      <a href="#" item = "Western" onclick="getRestaurantDataByCato(this);">Western</a>
+      <a href="#" item = "Seafood" onclick="getRestaurantDataByCato(this);">Seafood</a>
+    </div>
+  </div>
+
+  <div class="dropdowntwo">
+    <button class="dropbtntwo">Heading</button>
+    <div class="dropdowntwo-content" >
+      <a href="#" onclick="showAll();" >All</a>
+      <a href="#" item = "North" onclick="getRestaurantDataByHeading(this);" >North</a>
+      <a href="#" item = "East" onclick="getRestaurantDataByHeading(this);" >East</a>
+      <a href="#" item = "West" onclick="getRestaurantDataByHeading(this);" >West</a>
+      <a href="#" item = "South" onclick="getRestaurantDataByHeading(this);" >South</a>
+    </div>
+  </div>
+
+  <div class="dropdown">
+    <button id = "bestbutton" class="dropbtnthree" onclick="bestRestaurant();">Show Only Top Restaurants</button>
+  </div>
+  
+
+  
+  
+
+
+  <br></br>
+  <br></br>
+ 
+
+ 
+ <!-- This is the container that holds the initial message, heading, and movies -->
+ <div class="container">
+     <!-- The message will be shown when the page loads and will
+     disappear after the movies are loaded -->
+     <div class="row" id="parent">
+         Retrieving restaurants from database... Please wait...<br><br>
+         If you are seeing this message for a long time, it is likely
+         that you have a JavaScript error. Troubleshoot your script by
+         using the browser console panel now. Please use either Firefox
+         or Chrome to render this webpage.
+     </div>
+     <p>
+         <!-- This is the heading showing how many movies are there -->
+     <h3 id="summary"></h3>
+     </p>
+     <br></br>
+     <!-- Displays thumbnails of the movies here -->
+     <div id="restaurantsTable" class="row"></div>
+  </div>
+ <!-- Include the restaurant modal here -->
+ <div w3-include-html="restaurant-model.html"></div>
+  <!-- Include the restaurant modal here -->
+ <div w3-include-html="reviews-model.html"></div>
+ <!-- Include the new comments modal here -->
+ <div w3-include-html="new-reviews-modal.html"></div>
+ <!-- Include the edit comments modal here -->
+ <div w3-include-html="edit-reviews-modal.html"></div>
+ <!-- Include the signup modal here -->
+ <div w3-include-html="signup-modal.html"></div>
+ <!-- Include the login modal here -->
+ <div w3-include-html="login-modal.html"></div>
+ <!-- Include the success modal here -->
+ <div w3-include-html="success-modal.html"></div>
+ <!-- Include the fail modal here -->
+ <div w3-include-html="fail-modal.html"></div>
+ <!-- Include the map modal here -->
+ <div w3-include-html="googlemap-modal.html"></div>
+  
+
+ 
+ 
+
+
+ 
+
+
+
+  
+
+
+
+
+
+
+  
+  <footer>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-4">
+          <div class="about">
+            <div class="logo">
+              <img src="assets/images/Logo.png" alt="FoodieSG">
+            </div>
+            <p>This is a project made by Muhammad Kenz,</p>
+            <p>For the Coding & Development Project and</p>
+            <p>Database Application Development module</p>
+          </div>
+        </div>
+              
+        <div class="col-lg-4">
+          <div class="contact-us">
+            <h4>Contact Me</h4>
+            <p>Email: MuhammadKenz2@gmail.com</p>
+            <p>Linkdin: <a href="https://www.linkedin.com/in/muhammad-kenz/">Muhammad Kenz</a></p>
+          
+          </div>
+        </div>
+        <div class="col-lg-12">
+          <div class="sub-footer">
+            <p>Copyright © 2021 FoodieSG by Kenz., Ltd. All Rights Reserved.
+            <br>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+</body>
+
+<!-- Scripts -->
+<script src="https://www.w3schools.com/lib/w3.js"></script>
+<script>
+  //to bring in other HTML on the fly into this page
+  w3.includeHTML();
+</script>
+<script src="vendor/jquery/jquery.min.js"></script>
+<script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="assets/js/owl-carousel.js"></script>
+<script src="assets/js/animation.js"></script>
+<script src="assets/js/imagesloaded.js"></script>
+<script src="assets/js/custom.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+<script src="https://kit.fontawesome.com/86ec7c1143.js" ></script>
+<script src="assets/js/app.js"></script>
+<script src="assets/js/restaurants.js"></script>
+<script src="assets/js/reviews.js"></script>
+<script src="assets/js/signup.js"></script>
+<script src="assets/js/login.js"></script>
+<script src="assets/js/logout.js"></script>
+<script src="assets/js/checkToken.js"></script>
+<script src = "https://maps.googleapis.com/maps/api/js?key=AIzaSyBWZcOjKvB0dSffR5HujQpZ323t0w9W2Cg"></script>
+
+
+
+
+
+
+
+
+
+
+
+  
+</html>
+
+
+
+
+  
+

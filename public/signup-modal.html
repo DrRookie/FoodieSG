@@ -1,0 +1,53 @@
+<!-- this is a structure of Bootstrap Modal -->
+<div class="modal fade " id="signupModal" tabindex="-1" role="dialog">    
+	<div class="modal-dialog modal-sm " role="document">        
+		<div class="modal-content" style="width: max-content; position: relative; right: 30%;   ">            
+			<div class="modal-body px-5" >                
+                <form>
+
+                    <div class="form-group">
+                        <label for="username">Username</label>
+                        <input type="text" class="form-control" id="usernamee" aria-describedby="usernameHelp" placeholder="Enter username">
+                        <small id="usernameHelp" class="form-text text-muted">Put something fun! But don't put your real name here.</small>
+                    </div>
+                    <div class="form-group">
+                        <label for="first_name">First Name</label>
+                        <input type="text" class="form-control" id="first_name" placeholder="John?"> 
+                    </div>
+                    <div class="form-group">
+                        <label for="last_name">Last Name</label>
+                        <input type="text" class="form-control" id="last_name" placeholder="Smith?"> 
+                    </div>
+                    <div class="form-group">
+                        <p>Gender:</p>
+                        <label for="Male">Male</label>
+                        <input type="radio" id="Male" name="gender" value="Male">
+                        <label for="Female">Female</label>
+                        <input type="radio" id="Female" name="gender" value="Female">
+                    </div>
+                    <div class="form-group">
+                        <label for="mobile_num">Phone Number</label>
+                        <input type="tel" class="form-control" id="mobile_num" > 
+                    </div>
+
+                    <div class="form-group">
+                      <label for="email">Email address</label>
+                      <input type="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Enter email">
+                      <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="profile_pic">Upload a profile picture:</label>
+                        <input type="file" class="form-control" id="profile_pic" onchange= "encode();" >
+                      </div>
+
+                    <div class="form-group">
+                      <label for="password">Create a password</label>
+                      <input type="password" class="form-control" id="password" placeholder="ChickenNoodle123">
+                    </div>
+                    <button onclick= "registerMe();" type="button" class="btn btn-primary" >SignUp Now!</button>
+                  </form>  
+			</div>        
+		</div>    
+	</div>
+</div>
